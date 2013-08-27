@@ -28,8 +28,8 @@ public class DateConversion {
 	 
 	 public static void main(String args[]) {
 		 
-		 String effectiveDate = "13/14/2017";
-		 String expiryDate = "13/14/2018";
+		 String effectiveDate = "08/03/2014";
+		 String expiryDate = "08/03/2015";
 		 System.out.println("Effective Date : "+ DateConversion.stringToDate(effectiveDate));
 		 System.out.println("Expiry Date : "+ DateConversion.stringToDate(expiryDate));
 	
