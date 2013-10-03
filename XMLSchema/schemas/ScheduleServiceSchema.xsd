@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified" attributeFormDefault="unqualified">
+		
+		
+		<!--ComplexType for  Requesting the Agency's Schedule list  -->
+		
+		<xsd:complexType name="AGENCY_SCHEDULE_LIST_REQUEST">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_ID" type="xsd:string"/>
+			<xsd:element name="AGENCY_NAME" type="xsd:string"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="AGENCY_SCHEDULE">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_SCHEDULE_ID" type="xsd:decimal"/>
+				<xsd:element name="AGENGY_SCHEDULE_NAME"  type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="AGENCY_SCHEDULE_LIST">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_SCHEDULE" type="AGENCY_SCHEDULE"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<!--  ComplexType for response List of Schedule for an Agency -->
+		<xsd:complexType name="AGENCY_SCHEDULE_LIST_RESPONSE">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_SCHEDULE_LIST"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		
+		
+		<!--Edit Policy Schedule Request & Response -->
+		<xsd:complexType name="EDIT_POLICY_SCHEDULE_REQUEST">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+				<xsd:element name="AGENCY_NAME" type="xsd:string"/>
+				<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+				<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+				<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+				<xsd:element name="SCHEDULE_PERIOD" type="xsd:date"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="EDIT_POLICY_SCHEDULE_RESPONSE">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+				<xsd:element name="POLICY_BORDEREAU_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+				<xsd:element name="AGENCY_NAME" type="xsd:string"/>
+				<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+				<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+				<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+				<xsd:element name="SCHEDULE_PERIOD" type="xsd:date"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		<!-- Get List of Policy Bordereau Schedule List -->
+		<xsd:complexType name="POLICY_BORDEREAU_IMPORT_SCHEDULE_LIST_REQUEST">
+		<xsd:sequence>
+			<xsd:element name="POLICY_BORDEREAU_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+		</xsd:sequence>
+		</xsd:complexType>	
+		
+		<!-- ComplexType for Policy Schedule Detail -->
+		<xsd:complexType name="POLICY_BORDEREAU_SCHEDULE_DETAIL">
+		<xsd:sequence>
+			<xsd:element name="POLICY_BORDEREAU_IMPORT_SCHEDULE_ID" type="xsd:decimal"/>
+			<xsd:element name="AGENCY_ID" type="xsd:decimal"/>
+			<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<!-- ComplexType for holding list of Policy Schedule details -->
+		<xsd:complexType name="POLICY_BORDEREAU_SCHEDULE_DETAIL_LIST">
+		<xsd:sequence>
+			<xsd:element name="POLICY_BORDEREAU_SCHEDULE_DETAIL" type="POLICY_BORDEREAU_SCHEDULE_DETAIL" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<!-- ComplexType for returning list of policy schedule list -->
+		<xsd:complexType name="POLICY_BORDEREAU_IMPORT_SCHEDULE_LIST_RESPONSE">
+		<xsd:sequence>
+			<xsd:element name="POLICY_BORDEREAU_SCHEDULE_DETAIL_LIST" type="POLICY_BORDEREAU_SCHEDULE_DETAIL_LIST"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		
+		
+		<!-- Add Agency Schedule -->
+		<xsd:complexType name="ADD_AGENCY_SCHEDULE_DEFINITION_REQUEST">
+		<xsd:sequence>
+			<xsd:element name="SCHEDULE_NAME" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_PERIOD" type="xsd:date"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="ADD_AGENCY_SCHEDULE_DEFINITION_RESPONSE">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+			<xsd:element name="SCHEDULE_NAME" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_PERIOD" type="xsd:date"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		
+		<!-- Get Schedule List for specified Agency_Schedule_Definition_list-->
+		<xsd:complexType name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_LIST_REQUEST">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<!--  Agency Schedule Detail -->
+		<xsd:complexType name="AGENCY_BORDEREAU_IMPORT_SCHEDULE">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_ID" type="xsd:decimal"/>
+				<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+				<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+				<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		<!-- ComplexType for list of schedule details -->
+		<xsd:complexType name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_LIST">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_BORDEREAU_IMPORT_SCHEDULE"  type="AGENCY_BORDEREAU_IMPORT_SCHEDULE" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		<!--  Response - Schedule list for given Schedule Definition ID -->
+		<xsd:complexType name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_LIST_RESPONSE">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_BORDEREAU_IMPORT_SCHEDULE_LIST" type="AGENCY_BORDEREAU_IMPORT_SCHEDULE_LIST" minOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		
+		
+		
+		<!-- Edit Agency Schedule -->
+		<xsd:complexType name="EDIT_AGENCY_SCHEDULE_REQUEST">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+			<xsd:element name="SCHEDULE_NAME" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_PERIOD" type="xsd:date"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		
+		<xsd:complexType name="EDIT_AGENCY_SCHEDULE_RESPONSE">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_SCHEDULE_DEFINITION_ID" type="xsd:decimal"/>
+			<xsd:element name="SCHEDULE_NAME" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_TYPE" type="xsd:string"/>
+			<xsd:element name="SCHEDULE_START_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_END_DATE" type="xsd:date"/>
+			<xsd:element name="SCHEDULE_PERIOD" type="xsd:date"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		
+</xsd:schema>		

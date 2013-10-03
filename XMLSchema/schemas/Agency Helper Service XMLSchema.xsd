@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified" attributeFormDefault="unqualified">
+		
+		
+		<!--ComplexType for  Requesting the Agency's Schedule list  -->
+		
+		<xsd:complexType name="AGENCY_LIST_REQUEST">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_ID" type="xsd:string"/>
+			<xsd:element name="AGENCY_NAME" type="xsd:string"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="AGENCY">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_ID" type="xsd:decimal"/>
+				<xsd:element name="AGENGY_NAME"  type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="AGENCY_LIST">
+		<xsd:sequence>
+			<xsd:element name="AGENCY" type="AGENCY"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<!--  ComplexType for response List of  Agency  to fill Auto Complete-->
+		<xsd:complexType name="AGENCY_LIST_RESPONSE">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_LIST"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		
+		<!--  ComplexType for Find Agency Request  
+			inputs can be Agency ID,Agency Name or Agency Name pattern
+		-->
+		<xsd:complexType name="AGENCY_DETAIL_LIST_REQUEST">
+			<xsd:choice>
+				<xsd:element name="AGENCY_ID" type="xsd:string"/>
+				<xsd:element name="PATTERN" type="xsd:string"/>
+			</xsd:choice>
+		</xsd:complexType>
+		
+		<xsd:complexType name="AGENCY_DETAIL">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_ID" type="xsd:decimal"/>
+				<xsd:element name="AGENCY_CODE" type="xsd:string"/>
+				<xsd:element name="AGENCYNAME" type="xsd:string"/>
+				<xsd:element name="BRANCHNAME" type="xsd:string"/>
+				<xsd:element name="LISTNAME" type="xsd:string"/>
+				<xsd:element name="ADDRESSLINE1" type="xsd:string"/>
+				<xsd:element name="CITY" type="xsd:string"/>
+				<xsd:element name="STATE" type="xsd:string"/>
+				<xsd:element name="ZIP" type="xsd:long"/>
+				<xsd:element name="STATUS" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		<xsd:complexType name="AGENCY_DETAIL_LIST">
+		<xsd:sequence>
+			<xsd:element name="AGENCY_DETAIL" type="AGENCY_DETAIL"/>
+		</xsd:sequence>
+		</xsd:complexType>
+		
+		<!-- ComplexType for Returning the List of Agency Details  -->
+		<xsd:complexType name="AGENCY_DETAIL_LIST_RESPONSE">
+			<xsd:sequence>
+				<xsd:element name="AGENCY_DETAIL_LIST" type="AGENCY_DETAIL_LIST"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		
+		
+</xsd:schema>		

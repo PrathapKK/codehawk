@@ -249,7 +249,7 @@ public class BookCatalog {
 			Iterator<Book> iterator = bookList.iterator();
 			for(Book b : bookList)
 			{
-				if(b.getPublish_date().after(startDate)  && b.getPublish_date().before(endDate))
+				if( b.getPublish_date().after(startDate)  & b.getPublish_date().before(endDate) )
 				{	
 					book = b;
 					bookListByPublishDate.add(b);

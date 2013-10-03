@@ -1,6 +1,7 @@
 package com.codehawk.collection.list;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ArrayListExample {
 	
@@ -17,7 +18,16 @@ public class ArrayListExample {
 		namesList.add(3, "Antony");
 		namesList.addAll(namesList);
 		System.out.println();
-		System.out.println("Is List Contains "+namesList.contains("Antony Doss"));
+		System.out.println("Is List Contains 'Antony Doss'"+namesList.contains("Antony Doss"));
+		
+		
+		
+		Iterator iterator = namesList.iterator();
+		
+		while(iterator.hasNext()) {
+			System.out.println(" Has Code  Element "+iterator.next());
+			
+		}
 		
 		
 		

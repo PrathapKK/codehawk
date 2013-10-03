@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified" attributeFormDefault="unqualified">
+		
+		
+		<xsd:simpleType name="Status">
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="Successful"/>
+				<xsd:enumeration value="Failed"/>
+				<xsd:enumeration value="Missed"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+
+<!-- This ComplexType is used for Requesting Files Imported by all Agencies  status(Successful,Failed,Missed) and range -->
+
+<xsd:complexType name="AgencyImportFileListRequest">
+	<xsd:sequence>
+		<xsd:element name="PROCESS_STATUS" type="Status"/>	
+		<xsd:element name="START_NUMBER" type="xsd:int"/>
+		<xsd:element name="END_NUMBER" type="xsd:int"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<!-- Agency Import Details -->
+<xsd:complexType name="AgencyImportDetail">
+<xsd:sequence>
+		<xsd:element name="AGENCY_ID" type="xsd:decimal"/>
+		<xsd:element name="AGENCY_NAME" type="xsd:string"/>
+		<xsd:element name="SCHEDULE_NAME" type="xsd:string"/>
+		<xsd:element name="AGENCY_ADDRESS" type="xsd:string"/>
+		<xsd:element name="PHONE" type="xsd:long"/>
+		<xsd:element name="EMAIL" type="xsd:string"/>
+		<xsd:element name="LAST_SUCCESSFUL_IMPORT_DATE" type="xsd:date"/>
+		<xsd:element name="LAST_ATTEMPTED_IMPORT_DATE" type="xsd:date"/>
+		<xsd:element name="NEXT_CUTOFF_DATE" type="xsd:date"/>
+		<xsd:element name="SCHEDULED_TYPE" type="xsd:string"/>
+		<xsd:element name="SCHEDULED_DATE" type="xsd:date"/>
+		<xsd:element name="NO_OF_POLICIES" type="xsd:int"/>
+		<xsd:element name="TOTAL_PREMIUM" type="xsd:decimal"/>
+		<xsd:element name="FINIANCIAL_CONTROL_STATUS" type="xsd:string"/>
+		<xsd:element name="NO_OF_TIMES_MISSED" type="xsd:string"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+
+<xsd:complexType name="AgencyImportDetailList">
+<xsd:sequence>
+		<xsd:element type="AgencyImportDetail" name="AgencyImportDetail" minOccurs="0" maxOccurs="unbounded"/> 
+</xsd:sequence>
+</xsd:complexType>
+
+<!-- Agency  -->
+<xsd:complexType name="AgencyImportFileListResponse">
+	<xsd:sequence>
+		<xsd:element type="AgencyImportDetailList" name="AgencyImportDetailList" /> 
+	</xsd:sequence>
+</xsd:complexType>
+
+
+<!-- This Complex Type is used to Send Request for Getting List of Imported Files( Successful, Failed, Missed)  
+	Request Contains - AgencyID and Process Status(Successful, Failed, Missed)
+-->
+
+<xsd:complexType name="RECEIVED_FILE_LIST_REQUEST">
+<xsd:sequence>
+	<xsd:element name="AGENCY_ID" type="xsd:decimal"/>
+	<xsd:element name="PROCESS_STATUS" type="xsd:string"/>	
+</xsd:sequence>
+</xsd:complexType>
+
+<!-- This ComplexType Holds the Details of a File -->
+
+<xsd:complexType name="ImportFileDetail">
+	<xsd:sequence>
+		<xsd:element name="FileID" type="xsd:decimal"/>
+		<xsd:element name="FILENAME" type="xsd:string"/>
+		<xsd:element name="NO_OF_RECORDS_FOUND" type="xsd:int"/>
+		<xsd:element name="NO_OF_SUCCESSFULL_RECORD_IMPORT" type="xsd:int"/>
+		<xsd:element name="NO_OF_ERROR_RECORDS" type="xsd:int"/>
+		<xsd:element name="NO_OF_RECORDS_FAILED" type="xsd:int"/>
+		<xsd:element name="STATUS" type="xsd:string"/>
+		<xsd:element name="IMPORTED_DATE" type="xsd:date"/>
+		<xsd:element name="NO_OF_POLICIES" type="xsd:int"/>
+		<xsd:element name="FINANCIAL_CONTROL_STATUS" type="xsd:string"/>
+		<xsd:element name="TOTAL_PREMIUM" type="xsd:decimal"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<!-- This ComplexType Holds List of Files -->
+<xsd:complexType name="ImportFileDetailList">
+	<xsd:sequence>
+		<xsd:element name="ImportFileDetail" type="ImportFileDetail" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+	</xsd:sequence>
+</xsd:complexType>
+
+<!-- This ComplexType is used for sending the response for requested file list for an agency -->
+
+<xsd:complexType name="RECEIVED_FILE_LIST_RESPONSE">
+<xsd:sequence>
+	<xsd:element name="ImportFileDetailList" type="ImportFileDetailList" nillable="false"/>
+</xsd:sequence>
+</xsd:complexType>
+
+
+<xsd:complexType name="MEMBER_DETAILS_LIST_REQUEST">
+	<xsd:sequence>
+		<xsd:element name="AGENCY_ID" type="xsd:decimal"/>
+		<xsd:element name="FILE_ID" type="xsd:decimal"/>
+		<xsd:element name="STATUS" type="xsd:string"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<!-- MemberDetail -->
+<xsd:complexType name="MemberDetails">
+	<xsd:sequence>
+		<xsd:element name="MEMBER_ID" type="xsd:decimal"/>
+		<xsd:element name="MEMBER_NAME" type="xsd:string"/>
+		<xsd:element name="ADDRESS" type="xsd:string"/>
+		<xsd:element name="CITY" type="xsd:string"/>
+		<xsd:element name="STATE" type="xsd:string"/>
+		<xsd:element name="ZIP" type="xsd:long"/>
+		<xsd:element name="GENDER" type="xsd:string"/>
+		<xsd:element name="AGE" type="xsd:int"/>
+		<xsd:element name="BASE_COVERAGE_TYPE" type="xsd:string"/>
+		<xsd:element name="BASE_COVERAGE_AMOUNT" type="xsd:decimal"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<!-- This ComplexType is used for Enclosing list of Member Details -->
+<xsd:complexType name="MemberDetailList">
+<xsd:sequence>
+	<xsd:element name="MemberDetails" type="MemberDetails" minOccurs="0" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<!-- this ComplexType is used for Sending List of Members  as Response given AgencyID,FileID and Status -->
+
+<xsd:complexType name="MEMBER_DETAILS_LIST_RESPONSE">
+	<xsd:sequence>
+		<xsd:element name="MemberDetailsList" type="MemberDetailList" minOccurs="1" nillable="false"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<!-- This ComplexType holds the ErrorDetails for FileLevel and MemberLevel  -->
+<xsd:complexType name="ErrorDetail">
+	<xsd:sequence>
+		<xsd:element name="ErrorCode" type="xsd:string"/>
+		<xsd:element name="ErrorType" type="xsd:string"/>
+		<xsd:element name="ErrorDesc" type="xsd:string"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+
+
+<!-- PolPolicyCertificate Holder Details-->
+
+<xsd:complexType name="Policy_Certicate_Holder">
+	<xsd:sequence>
+	<xsd:element name="AGENCY_ID"/>
+	<xsd:element name="MEMBER_ID"/>
+	<xsd:element name="MASTER_POLICY_NUMBER"/>
+	<xsd:element name="CARRIER"/>
+	<xsd:element name="PLAN_NUMBER" />
+	<xsd:element name="PRIMARY_INSURED_FIRSTNAME" type="xsd:string"/>
+	<xsd:element name="PRIMARY_INSURED_MIDDLEINITIAL" type="xsd:string"/>
+	<xsd:element name="PRIMARY_INSURED_LASTNAME" type="xsd:string"/>
+	<xsd:element name="PRIMARY_INSURED_DOB" type="xsd:date"/>
+	<xsd:element name="PRIMARY_INSURED_ADDRESS1" type="xsd:string"/>
+	<xsd:element name="PRIMARY_INSURED_ADDRESS2" type="xsd:string"/>
+	<xsd:element name="PRIMARY_INSURED_CITY" type="xsd:string"/>
+	<xsd:element name="PRIMARY_INSURED_STATE" type="xsd:string"/>
+	<xsd:element name="PRIMARY_INSURED_ZIP" type="xsd:long"/>
+	<xsd:element name="SPOUSE_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="SPOUSE_MIDDLE_INITIAL" type="xsd:string"/>
+	<xsd:element name="SPOUSE_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="SPOUSE_DOB" type="xsd:date"/>
+	
+	<xsd:element name="DEPENDENT_CHILD1_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD1_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD1_DOB" type="xsd:date"/>
+	
+	<xsd:element name="DEPENDENT_CHILD2_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD2_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD2_DOB" type="xsd:date"/>
+	
+	<xsd:element name="DEPENDENT_CHILD3_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD3_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD3_DOB" type="xsd:date"/>
+	
+	<xsd:element name="DEPENDENT_CHILD4_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD4_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="DEPENDENT_CHILD4_DOB" type="xsd:date"/>
+	
+	<xsd:element name="ORIG_CERTIFICATE_EFFECTIVE_DATE" type="xsd:date"/>
+	<xsd:element name="CERTIFICATE_EFFECTIVE_DATE" type="xsd:date"/>
+	<xsd:element name="CERTIFICATE_EXPIRATION_DATE" type="xsd:date"/>
+		
+	<xsd:element name="STATE_CODE" type="xsd:string"/>
+	<xsd:element name="BASE_COVERAGE_TYPE" type="xsd:string"/>
+	<xsd:element name="RIDER1_COVERAGE_TYPE" type="xsd:string"/>
+	<xsd:element name="RIDER2_COVERAGE_TYPE" type="xsd:string"/>
+	<xsd:element name="RIDER3_COVERAGE_TYPE" type="xsd:string"/>
+	
+	<xsd:element name="PAYMENT_MODE" type="xsd:int"/>
+	<xsd:element name="SINGLE_RATE" type="xsd:decimal"/>
+	<xsd:element name="NUMBER_OF_SINGLE_LIVES" type="xsd:decimal"/>
+	<xsd:element name="SINGLE_PLUS_RATE" type="xsd:decimal"/>
+	<xsd:element name="NUMBER_OF_SINGLE_PLUS_LIVES" type="xsd:decimal"/>
+	<xsd:element name="SINGLE_PLUS_CHILD_RATE" type="xsd:decimal"/>
+	<xsd:element name="NUMBER_OF_SINGLE_PLUS_CHILD_LIVES" type="xsd:decimal"/>
+	<xsd:element name="FAMILY_RATE" type="xsd:decimal"/>
+	<xsd:element name="NUMBER_OF_FAMILY_RATES" type="xsd:decimal" />
+	<xsd:element name="GENDER" type="xsd:string"/>
+	<xsd:element name="AGE_AT_ISSUE" type="xsd:int"/>
+	
+	<xsd:element name="BENEFICIARY1_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY1_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY1_RELATIONSHIP" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY1_PRIMARY_PERCENT" type="xsd:string"/>
+	
+	
+	<xsd:element name="BENEFICIARY2_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY2_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY2_RELATIONSHIP" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY2_PRIMARY_PERCENT" type="xsd:string"/>
+	
+	
+	<xsd:element name="BENEFICIARY3_FIRST_NAME" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY3_LAST_NAME" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY3_RELATIONSHIP" type="xsd:string"/>
+	<xsd:element name="BENEFICIARY3_PRIMARY_PERCENT" type="xsd:string"/>
+	
+	<xsd:element name="BASE_COVERAGE_AMOUNT" type="xsd:decimal"/>
+	
+	<xsd:element name="PREMIUM_PERIOD_BEGIN_DATE" type="xsd:date"/>
+	<xsd:element name="PREMIUM_PERIOD_END_DATE" type="xsd:date"/>
+	
+	<xsd:element name="GROSS_WRITTEN_BASE_PREMIUM" type="xsd:decimal"/>
+	<xsd:element name="GROSS_WRITTEN_RIDER1_PREMIUM" type="xsd:decimal"/>
+	<xsd:element name="GROSS_WRITTEN_RIDER2_PREMIUM" type="xsd:decimal"/>
+	<xsd:element name="GROSS_WRITTEN_RIDER3_PREMIUM" type="xsd:decimal"/>
+	
+	<xsd:element name="STATEMENTDATE" type="xsd:date"/>
+	
+	
+	<xsd:element name="NEW_RENEW" type="xsd:string"/>
+	<xsd:element name="TOTAL_GROSS_PREMIUM" type="xsd:decimal"/>
+	<xsd:element name="COMMISSION" type="xsd:decimal"/>
+	<xsd:element name="SERVICE_TPA_FEE" type="xsd:decimal"/>
+	<xsd:element name="REMITTANCE_AMOUNT" type="xsd:decimal"/>
+	<xsd:element name="PREMIUM_TAX" type="xsd:decimal"/>
+	
+	
+	<xsd:element name="POLICY_TERM_DATE" type="xsd:date"/>
+	<xsd:element name="LAST_STATEMENT_DATE" type="xsd:date"/>
+	<xsd:element name="MEMBER_STATUS" type="xsd:string"/>
+	<xsd:element name="TOTAL_PREMIUM_PAID" type="xsd:decimal"/>
+	
+		
+	</xsd:sequence>
+</xsd:complexType>
+
+
+<!--  ComplexType for Requesting List of Policies imported(Successful,Failed,missed) -->
+
+<xsd:complexType name="IMPORTED_POLICY_LIST_REQUEST">
+<xsd:sequence>
+	<xsd:element name="STATUS" type="xsd:string"/>
+	<xsd:element name="START_NUMBER" type="xsd:int"/>
+	<xsd:element name="END_NUMBER" type="xsd:int"/>
+</xsd:sequence>   
+</xsd:complexType>
+
+<xsd:complexType name="POLICY_DETAIL">
+	<xsd:sequence>
+		<xsd:element name="AGENCYNAME" type="xsd:string"/>
+		<xsd:element name="POLICYNUMBER" type="xsd:decimal"/>
+		<xsd:element name="SCHEDULED_TYPE" type="xsd:string" />
+		<xsd:element name="SCHEDULED_DATE" type="xsd:date"/>
+		<xsd:element name="POLICY_EFFECTIVE_DATE" type="xsd:date"/>
+		<xsd:element name="POLICY_EXPIRATION_DATE" type="xsd:date"/>
+		<xsd:element name="FINANCIAL_CONTROL" type="xsd:string"/>
+		<xsd:element name="TOTAL_PREMIUM" type="xsd:decimal"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+
+<xsd:complexType name="POLICYLIST" >
+<xsd:sequence>
+	<xsd:element name="POLICY_DETAIL" minOccurs="0" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+
+
+<!--This ComplexType is used to hold the List of Policies imported -->
+<xsd:complexType name="IMPORTED_POLICY_LIST_RESPONSE">
+<xsd:sequence>
+	<xsd:element name="POLICYLIST" type="POLICYLIST" maxOccurs="1"/>
+</xsd:sequence>
+</xsd:complexType>
+
+
+
+<!-- ComplexType Request for Failed Scheduled File Imports-->
+<xsd:complexType name="FAILED_SCHEDULED_FILE_IMPORTS_REQUEST">
+<xsd:sequence>
+	<xsd:element name="START_NUMBER"/>
+	<xsd:element name="END_NUMBER"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<!-- Complex Type for Failed File Details -->
+<xsd:complexType name="FAILED_IMPORT_FILE_DETAIL">
+	<xsd:sequence>
+		<xsd:element name="FILE_ID" type="xsd:decimal"/>
+		<xsd:element name="AGENCYNAME" type="xsd:string"/>
+		<xsd:element name="FILENAME" type="xsd:string"/>
+		<xsd:element name="IMPORTED_DATE" type="xsd:date"/>
+		<xsd:element name="STATUS" type="xsd:string"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="FAILED_IMPORT_FILE_LIST">
+<xsd:sequence>
+	<xsd:element name="FAILED_IMPORT_FILE_DETAIL" minOccurs="0" maxOccurs="unbounded" />
+</xsd:sequence>
+</xsd:complexType>
+
+<!--  ComplexType Response for failed scheduled file imports list -->
+<xsd:complexType name="FAILED_SCHEDULED_FILE_IMPORTS_RESPONSE">
+	<xsd:sequence>
+		<xsd:element name="FAILED_IMPORT_FILE_LIST" type="FAILED_IMPORT_FILE_LIST" maxOccurs="1" nillable="false"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<!-- ComplexType for Requesting Error Details of Failed Import File. -->
+<xsd:complexType name="FAILED_FILE_ERROR_DETAIL_REQUEST">
+	<xsd:sequence>
+		<xsd:element name="FILE_ID" type="xsd:decimal"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="ERROR_LIST">
+<xsd:sequence>
+	<xsd:element name="ErrorDetail" type="ErrorDetail" minOccurs="0" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<!-- ComplexType for Error Details Response of a Failed Import File -->
+<xsd:complexType name="FAILED_FILE_ERROR_DETAIL_RESPONSE">
+	<xsd:sequence>
+		<xsd:element name="ERROR_LIST"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+
+
+<!-- Schema for  Bordereau Import Status -->
+
+<xsd:complexType name="IMPORT_STATUS_REQUEST">
+	<xsd:sequence>
+		<xsd:element name="AGENCY_ID" type="xsd:decimal"/>
+		<xsd:element name="IMPORT_START_DATE" type="xsd:date"/>
+		<xsd:element name="IMPORT_END_DATE" type="xsd:date"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="FILE_IMPORT_STATUS_DETAIL">
+<xsd:sequence>
+	<xsd:element name="AGENCYNAME" type="xsd:string"/>
+	<xsd:element name="FILE_NAME" type="xsd:string"/>
+	<xsd:element name="IMPORT_STATUS" type="xsd:string"/>
+	<xsd:element name="IMPORT_START_TIME" type="xsd:time"/>
+	<xsd:element name="IMPORT_END_TIME" type="xsd:time"/>
+	<xsd:element name="NO_OF_POLICIES" type="xsd:int"/>
+	<xsd:element name="SCHEDULE_NAME" type="xsd:string"/>
+	<xsd:element name="TOTAL_PREMIUM" type="xsd:decimal"/>
+	<xsd:element name="FINANCIAL_CONTROL" type="xsd:string"/>
+	<xsd:element name="TOTAL_NO_OF_RECORDS" type="xsd:int"/>
+	<xsd:element name="NO_OF_RECORDS_PROCESSED" type="xsd:int"/>
+	<xsd:element name="NO_OF_RECORDS_IMPORTED_SUCESSFULLY" type="xsd:int"/>
+	<xsd:element name="NO_OF_RECORDS_FAILED" type="xsd:int"/>
+	<xsd:element name="IMPORTED_BY" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="FILE_IMPORT_STATUS_DETAIL_LIST">
+<xsd:sequence>
+	<xsd:element name="FILE_IMPORT_STATUS_DETAIL" type="FILE_IMPORT_STATUS_DETAIL" minOccurs="0" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+
+<!-- ComplexType for Response Import Status with list of Imported File Details -->
+<xsd:complexType name="IMPORT_STATUS_RESPONSE">
+	<xsd:sequence>
+		<xsd:element name="FILE_IMPORT_STATUS_DETAIL_LIST" maxOccurs="1"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+
+
+
+</xsd:schema>		

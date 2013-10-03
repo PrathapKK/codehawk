@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+
+<xsd:complexType name="CertificateRequest">
+	<xsd:sequence>
+		<xsd:element  type="xsd:string" name="InsuredMemberNumber" nillable="false"/>	
+		<xsd:element type="xsd:string" name="CertRequestType"/>
+		<xsd:element type="xsd:string" name="RequesterName"/>
+		<xsd:element type="xsd:string" name="RequesterRole"/>
+		<xsd:element type="xsd:string" name="PlanName"/>
+		<xsd:element type="xsd:string" name="CertHolderFirstName"/>
+		<xsd:element type="xsd:string" name="CertHolderMiddleInitial"/>
+		<xsd:element type="xsd:string" name="CertHolderLastName"/>
+		<xsd:element type="xsd:string" name="CertHolderAddress1"/>
+		<xsd:element type="xsd:string" name="CertHolderAddress2"/>
+		<xsd:element type="xsd:string" name="CertHolderCity"/>
+		<xsd:element type="xsd:string" name="CertHolderState"/>
+		<xsd:element type="xsd:long" name="CertHolderZipCode"/>
+		<xsd:element type="xsd:date" name="CertHolderDOB"/>
+		<xsd:element type="xsd:string" name="Gender"/>
+		<xsd:element type="xsd:int" name="AgeAtIssue"/>
+		<xsd:element type="xsd:string" name="WorkPhone"/>
+		<xsd:element type="xsd:string" name="HomePhone"/>
+		<xsd:element type="xsd:string" name="MobilePhone"/>
+		<xsd:element type="xsd:string" name="EmailAddress1"/>
+		<xsd:element type="xsd:string" name="EmailAddress2"/>
+		<xsd:element type="xsd:date" name="CertEffectiveDate"/>
+		<xsd:element type="xsd:date" name="CertExpirationDate"/>
+		<xsd:element type="xsd:string" name="NewRenew"/>
+		<xsd:element type="xsd:decimal" name="BaseCoverage"/>
+		<xsd:element type="xsd:string" name="Status"/>
+		<xsd:element type="xsd:decimal" name="Premium"/>
+		<xsd:element type="xsd:string" name="CertIssuedBy"/>
+		<xsd:element type="xsd:date" name="CertIssuedDate"/>
+		<xsd:element type="xsd:decimal" name="RenewingCertID"/>
+		<xsd:element type="xsd:string" name="RenewCertNumber"/>
+		<xsd:element type="xsd:date" name="RenewingCertEffectiveDate"/>
+		<xsd:element type="xsd:date" name="RenewingCertExpirationDate"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="CertificateRequestRider">
+	<xsd:sequence>
+			<xsd:element type="xsd:string" name="CertificateRequestID"/>
+			<xsd:element type="xsd:string" name="RiderCoverageName"/>
+			<xsd:element type="xsd:string" name="RiderCoverageType"/>
+			<xsd:element type="xsd:decimal" name="RiderPremium"/>
+			<xsd:element type="xsd:decimal" name="RiderCoverageLimit"/>
+			<xsd:element type="xsd:decimal" name="RiderCoverageDeductible"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="CertificateRequestDependent">
+	<xsd:sequence>
+			<xsd:element type="xsd:string" name="CertificateRequestID"/>
+			<xsd:element type="xsd:string" name="FirstName"/>
+			<xsd:element type="xsd:string" name="MiddleInitial"/>
+			<xsd:element type="xsd:string" name="LastName"/>
+			<xsd:element type="xsd:date" name="DOB"/>
+			<xsd:element type="xsd:string" name="Gender"/>
+			<xsd:element type="xsd:string" name="DependentType"/>
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="CertificateRequestBeneficiary">
+	<xsd:sequence>
+			<xsd:element type="xsd:decimal"  name="CertificateRequestID"/>
+			<xsd:element type="xsd:string" name="BeneficiaryType"/>
+			<xsd:element type="xsd:string" name="FirstName"/>
+			<xsd:element type="xsd:string" name="MiddleInitial"/>
+			<xsd:element type="xsd:string" name="LastName"/>
+			<xsd:element type="xsd:string" name="Relationship"/>
+			<xsd:element type="xsd:string" name="Percentage"/>
+			<xsd:element type="xsd:string" name="Address1"/>
+			<xsd:element type="xsd:string" name="Address2"/>
+			<xsd:element type="xsd:string" name="City"/>
+			<xsd:element type="xsd:string" name="State"/>
+			<xsd:element type="xsd:string" name="ZipCode"/>
+			<xsd:element type="xsd:string" name="PhoneNumber"/>
+			<xsd:element type="xsd:string" name="EmailAddress"/>
+	</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
