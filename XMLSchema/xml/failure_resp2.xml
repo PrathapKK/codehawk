@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+	<NewOrderResp>
+		<IndustryType></IndustryType>
+		<MessageType>AC</MessageType>
+		<MerchantID>198728</MerchantID>
+		<TerminalID>001</TerminalID>
+		<CardBrand>VI</CardBrand>
+		<AccountNum>XXXXXXXXXXXXXXXX</AccountNum>
+		<OrderID>0000000694</OrderID>
+		<TxRefNum>52657E0AA9FC997B56A17950F92CD174CE6D53B0</TxRefNum>
+		<TxRefIdx>0</TxRefIdx>
+		<ProcStatus>0</ProcStatus>
+		<ApprovalStatus>0</ApprovalStatus>
+		<RespCode>64</RespCode>
+		<AVSRespCode>B </AVSRespCode>
+		<CVV2RespCode>N</CVV2RespCode>
+		<AuthCode></AuthCode>
+		<RecurringAdviceCd></RecurringAdviceCd>
+		<CAVVRespCode></CAVVRespCode>
+		<StatusMsg>CVV2/CVC2 Failure</StatusMsg>
+		<RespMsg></RespMsg>
+		<HostRespCode>531</HostRespCode>
+		<HostAVSRespCode>I3</HostAVSRespCode>
+		<HostCVV2RespCode>N</HostCVV2RespCode>
+		<CustomerRefNum>88328901</CustomerRefNum>
+		<CustomerName>DAVID WIERZBA</CustomerName>
+		<ProfileProcStatus>0</ProfileProcStatus>
+		<CustomerProfileMessage>Profile Created</CustomerProfileMessage>
+		<RespTime>151834</RespTime>
+		<PartialAuthOccurred></PartialAuthOccurred>
+		<RequestedAmount></RequestedAmount>
+		<RedeemedAmount></RedeemedAmount>
+		<RemainingBalance></RemainingBalance>
+		<CountryFraudFilterStatus></CountryFraudFilterStatus>
+		<IsoCountryCode></IsoCountryCode>
+	</NewOrderResp>
+</Response>
